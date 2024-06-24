@@ -1,0 +1,69 @@
+.header{
+    display: flex;
+    color: black;
+    background-color: chartreuse;
+    height: 60px;
+    border-width: 5px;
+    border-style: solid;
+    padding-top: 10px;
+    padding-left: 20px;
+    box-shadow: red 3px 5px 5px;
+}
+
+#signin{
+   position: relative;
+   width: 100px;
+   left: 1250px;
+   color: blue;
+   font-size: x-large;
+   border-style: solid;
+   border-color: black;
+   text-align: center;
+   margin :5px;
+   background-color:white;
+}
+#signin:hover{
+    background-color: grey;
+    
+}
+
+.mid{
+    margin-top: 250px;
+    text-align: center;
+    font-size: x-large;
+    background-color: blanchedalmond;
+    height: 400px;
+    padding-top: 50px;
+
+}
+
+.footer{
+    background-color: black;
+    color: white;
+    font-size: xx-large;
+    padding-top: 40px;
+    margin-top: 150px;
+    height: 100px;
+
+}
+
+
+.mid-text{
+    position: relative;
+    animation-name: moving_text;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+#mid-l1{
+    word-spacing:20px;
+}
+@keyframes moving_text{
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

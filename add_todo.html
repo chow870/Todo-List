@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Todo</title>
+</head>
+<body>
+        <h1>What do what to add </h1>
+        <form id="myForm">
+            <label for="todo">What do You Want to add</label>
+            <input type="text" id="todo" name="todo">
+            <br>
+            <label for="due"> The due Date</label>
+            <input type="date" id="due" name="due">
+            <br>
+            <button type="submit">SUBMIT</button>
+        </form>
+<div id="response"></div>
+
+<script >
+    let Id=1;
+    const form = document.getElementById("myForm");
+    form.addEventListener("submit",async (event)=>{
+    
+        event.preventDefault(); // Prevent the default form submission
+        const formData  = new FormData(form); // Create a FormData object from the form
+
+        // Convert FormData to URLSearchParams to handle as x-www-form-urlencoded
+        const token = localStorage.getItem('authToken');
+        console.log(token);
+        
+        // Convert FormData to a plain object
+    const formObject = {};
+    formData.forEach((value, key) => {
+        formObject[key] = value;
+    });
+
+    // Add the ID to the form data
+    formObject.id = Id;
+    Id++;
+    const jsonString = JSON.stringify(formObject);
+        console.log('request sent');
+
+    let resp = await fetch('http://localhost:3000/add',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+        },
+        body: jsonString
+    })
+    let data = await resp.json();
+    console.log(data);
+    if(data.status == 200){
+        document.getElementById('response').innerText = "added successfully";
+    }
+    else{
+        document.getElementById('response').innerText = "failed";
+    }
+    })
+
+
+
+</script>
+
+
+</body>
+</html>

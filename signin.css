@@ -1,0 +1,53 @@
+body{
+    background-image: url("bgimg/signin_bg.jpg");
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+}
+.signin{
+    
+    position: relative;
+    top:80px;
+    left:500px;
+    border-style :solid;
+    height: 300px;
+    width: 400px;
+    backdrop-filter: blur(5px); 
+
+}
+.username{
+    margin-top: 50px;
+    margin-left: 30px;
+}
+.password{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+#submit-button{
+    margin-top: 30px;
+    margin-left: 150px;
+}
+#response2{
+    position: relative;
+    top:100px;
+    left: 500px;
+    margin-top: 20px;
+}
+#response1{
+    height : 50px;
+    width:400px;
+    position: relative;
+    top:100px;
+    left:500px;
+    font-size: large;
+    /* padding-left: 30px; */
+}
+.if_succ{
+    background-color: darkseagreen;
+    color: black;
+}
+
+.if_failed
+{
+    background-color: rgb(243, 9, 9);
+    color: black;
+}
