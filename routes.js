@@ -7,6 +7,8 @@ const app = express();
 const cors = require('cors');
 const multer = require('multer');
 
+
+
 const upload = multer();
 app.use(cors());
 
@@ -33,6 +35,31 @@ const id=1;
   
   model_username=mongo.model("model_username",user_schema,"user_rec");
   model_todo=    mongo.model("model_todo",todo_schema,"todo_rec");
+
+app.post("/signin/add",upload.none(),function(req, res){
+  const Username = req.body["username"];
+  const Password = req.body["password"];
+
+  console.log(Username,Password);
+  console.log(req.body);
+  console.log("request to add user received");
+try{
+  let new_user= user_schema({username:Username, password:Password});
+  new_user.save();
+  console.log("new user added");
+  req.json({
+    msg:"New User is added successfully, Retry again to Login",
+  });
+}
+catch(error){
+  req.json({
+    msg:"Inapporiate UserName/ Password",
+  })
+  console.log(error);
+
+}
+ 
+});
   
 app.post("/signin", upload.none(),function (req, res) {
     const Username = req.body["username"];
@@ -44,6 +71,11 @@ app.post("/signin", upload.none(),function (req, res) {
   
     model_username.find({username:{$eq : Username}}).
     then((user)=>{
+      if (user.length==0){
+        req.json({
+          msg:"user not found"
+        })
+      }
         if(user.length >0 && user[0]["password"]==Password){
         var token = jwt.sign({username: Username },jwtPassword );
         console.log(token);
@@ -58,11 +90,9 @@ app.post("/signin", upload.none(),function (req, res) {
                 msg:"password is invalid",
                 });
         }
-    }).
-    catch(()=>{
-        return res.json({
-            msg:"user not found",
-            });
+    })
+    .catch(()=>{
+        
     })
   });
 

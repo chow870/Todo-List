@@ -67,3 +67,6 @@
         transform: translateX(-100%);
     }
 }
+.hid-display{
+    display:none;
+}
