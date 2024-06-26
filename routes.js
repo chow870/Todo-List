@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-  const url='mongodb+srv://adi228_ch:dropper%40870@chowji.k9m7ytj.mongodb.net/Project_todo';
   mongo.connect(url)
   let user_schema= mongo.Schema({
       username: String,
